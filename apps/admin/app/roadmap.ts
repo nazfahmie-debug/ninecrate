@@ -40,9 +40,9 @@ export const roadmap: RoadmapItem[] = [
   },
   {
     phase: "Dashboard authentication",
-    status: "not-started",
-    note: "Currently open to anyone on the network — fine for local use, not for a shared deployment.",
-    eta: "2–4 hrs",
+    status: "done",
+    note: "HTTP Basic Auth via Next.js Proxy, timing-safe credential comparison. Set ADMIN_USERNAME/ADMIN_PASSWORD to enable.",
+    eta: "—",
   },
   {
     phase: "Automated test suite",
