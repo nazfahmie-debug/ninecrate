@@ -2,6 +2,15 @@ import { getProductsWithContent } from "@ninecrate/data-store";
 
 export const dynamic = "force-dynamic";
 
+function isSafeHttpUrl(value: string): boolean {
+  try {
+    const url = new URL(value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export default async function DashboardPage() {
   const products = await getProductsWithContent();
 
@@ -30,7 +39,7 @@ export default async function DashboardPage() {
             {products.map((p) => (
               <tr key={p.sourceId}>
                 <td>
-                  {p.images[0] ? (
+                  {p.images[0] && isSafeHttpUrl(p.images[0]) ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={p.images[0]} alt={p.title} className="thumb" />
                   ) : (
@@ -38,9 +47,13 @@ export default async function DashboardPage() {
                   )}
                 </td>
                 <td>
-                  <a href={p.sourceUrl} target="_blank" rel="noreferrer">
-                    {p.title}
-                  </a>
+                  {isSafeHttpUrl(p.sourceUrl) ? (
+                    <a href={p.sourceUrl} target="_blank" rel="noreferrer">
+                      {p.title}
+                    </a>
+                  ) : (
+                    p.title
+                  )}
                 </td>
                 <td>
                   {p.price.toFixed(2)} {p.currency}

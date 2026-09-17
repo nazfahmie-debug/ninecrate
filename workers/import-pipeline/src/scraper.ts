@@ -8,7 +8,19 @@ const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY;
  * https://www.aliexpress.com/item/1005006123456789.html -> "1005006123456789"
  */
 export function extractItemId(productUrl: string): string {
-  const match = productUrl.match(/\/item\/(\d+)\.html/);
+  let parsed: URL;
+  try {
+    parsed = new URL(productUrl);
+  } catch {
+    throw new Error(`"${productUrl}" is not a valid URL.`);
+  }
+  if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+    throw new Error(
+      `Refusing to process URL with scheme "${parsed.protocol}" — only http(s) URLs are allowed.`
+    );
+  }
+
+  const match = parsed.pathname.match(/\/item\/(\d+)\.html/);
   if (!match) {
     throw new Error(
       `Could not find an item id in URL "${productUrl}". Expected a pattern like ` +
