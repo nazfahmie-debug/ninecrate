@@ -5,6 +5,7 @@
   "scripts": {
     "import:scrape": "pnpm --filter @ninecrate/import-pipeline run scrape",
     "tiktok:generate": "pnpm --filter @ninecrate/tiktok-agent run generate",
-    "dashboard:dev": "pnpm --filter @ninecrate/admin run dev"
+    "dashboard:dev": "pnpm --filter @ninecrate/admin run dev",
+    "test": "pnpm -r --if-present run test"
   }
 }

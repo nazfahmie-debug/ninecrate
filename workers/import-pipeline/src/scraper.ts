@@ -1,8 +1,5 @@
 import type { ProductListing, ProductVariant } from "@ninecrate/types";
 
-const RAPIDAPI_HOST = process.env.RAPIDAPI_HOST ?? "aliexpress-datahub.p.rapidapi.com";
-const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY;
-
 /**
  * Pulls the numeric AliExpress item id out of a product page URL, e.g.
  * https://www.aliexpress.com/item/1005006123456789.html -> "1005006123456789"
@@ -43,6 +40,9 @@ export function extractItemId(productUrl: string): string {
  * Fix here if either differs.
  */
 export async function fetchRawItem(itemId: string): Promise<unknown> {
+  const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY;
+  const RAPIDAPI_HOST = process.env.RAPIDAPI_HOST ?? "aliexpress-datahub.p.rapidapi.com";
+
   if (!RAPIDAPI_KEY) {
     throw new Error(
       "RAPIDAPI_KEY is not set. Copy .env.example to .env and add your RapidAPI key."

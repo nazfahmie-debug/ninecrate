@@ -49,7 +49,7 @@ export async function generateTikTokContent(listing: ProductListing): Promise<Ti
   return parseTikTokContent(textBlock.text);
 }
 
-function parseTikTokContent(text: string): TikTokContent {
+export function parseTikTokContent(text: string): TikTokContent {
   const jsonMatch = text.match(/\{[\s\S]*\}/);
   if (!jsonMatch) {
     throw new Error(

@@ -46,9 +46,9 @@ export const roadmap: RoadmapItem[] = [
   },
   {
     phase: "Automated test suite",
-    status: "not-started",
-    note: "Only manual/scripted smoke tests exist today; no regression protection.",
-    eta: "~1 day for meaningful coverage",
+    status: "done",
+    note: "31 vitest unit tests across the scraper, content generation, and data store. Run with `pnpm run test`.",
+    eta: "—",
   },
   {
     phase: "Medusa backend",

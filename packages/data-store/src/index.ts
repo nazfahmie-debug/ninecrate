@@ -6,8 +6,12 @@ import type { ProductListing, TikTokContent, TikTokContentRecord } from "@ninecr
 // Resolved from this file's own location (not process.cwd()) so every
 // consumer — the workers, the Next.js dashboard, etc. — reads/writes the
 // same directory regardless of where the process was launched from.
+// NINECRATE_DATA_DIR overrides this, so tests can point at a throwaway dir
+// instead of the real data/ folder.
 const PACKAGE_DIR = path.dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = path.resolve(PACKAGE_DIR, "../../../data");
+const DATA_DIR = process.env.NINECRATE_DATA_DIR
+  ? path.resolve(process.env.NINECRATE_DATA_DIR)
+  : path.resolve(PACKAGE_DIR, "../../../data");
 const PRODUCTS_FILE = path.join(DATA_DIR, "products.json");
 const TIKTOK_CONTENT_FILE = path.join(DATA_DIR, "tiktok-content.json");
 
