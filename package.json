@@ -1,0 +1,10 @@
+{
+  "name": "ninecrate",
+  "private": true,
+  "packageManager": "pnpm@12.4.1",
+  "scripts": {
+    "import:scrape": "pnpm --filter @ninecrate/import-pipeline run scrape",
+    "tiktok:generate": "pnpm --filter @ninecrate/tiktok-agent run generate",
+    "dashboard:dev": "pnpm --filter @ninecrate/admin run dev"
+  }
+}
