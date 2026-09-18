@@ -27,12 +27,6 @@ export const roadmap: RoadmapItem[] = [
     eta: "~30 min once an Anthropic key is provided",
   },
   {
-    phase: "TikTok auto-posting",
-    status: "not-started",
-    note: "Requires a TikTok for Business developer app plus per-account OAuth. Content is generated for manual review/posting today.",
-    eta: "1–2 dev days once the developer app is approved (approval timeline is TikTok's, not ours)",
-  },
-  {
     phase: "Admin dashboard",
     status: "done",
     note: "Built, security-reviewed for XSS, and live-tested with seeded data.",
@@ -52,20 +46,26 @@ export const roadmap: RoadmapItem[] = [
   },
   {
     phase: "Medusa backend",
-    status: "not-started",
-    note: "apps/backend is an empty scaffold — no product catalog, checkout, or order flow yet.",
-    eta: "2–3 days for an MVP",
+    status: "done",
+    note: "Running against a real Postgres instance on Railway. Region/sales-channel/shipping bootstrapped, plus a sync script pulling scraped listings from data/products.json into the catalog. Verified live: cart -> shipping -> payment -> completed order.",
+    eta: "—",
   },
   {
     phase: "Storefront",
-    status: "not-started",
-    note: "apps/storefront is an empty scaffold.",
-    eta: "2–3 days for an MVP",
+    status: "done",
+    note: "Medusa's official Next.js starter, wired to the backend above. Verified live: product listing, product detail page, add-to-cart, full checkout.",
+    eta: "—",
+  },
+  {
+    phase: "Real payment processor (Stripe)",
+    status: "blocked",
+    note: "Checkout currently completes with Medusa's built-in test payment provider (pp_system_default) — no real payment processor wired up yet.",
+    eta: "~1 hr once a Stripe test key is provided",
   },
   {
     phase: "Persistent database",
-    status: "not-started",
-    note: "Currently flat JSON files under data/ — fine for a single operator, not for production.",
-    eta: "Folded into the backend work above",
+    status: "done",
+    note: "Postgres on Railway backs the Medusa catalog/orders. The scraper/TikTok pipeline still uses flat JSON files in data/ as its own lightweight staging area before products enter the catalog — that's intentional, not a gap.",
+    eta: "—",
   },
 ];

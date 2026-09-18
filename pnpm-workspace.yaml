@@ -4,3 +4,9 @@ packages:
   - "workers/*"
 allowBuilds:
   esbuild: true
+  "@medusajs/telemetry": true
+  "@swc/core": true
+  msgpackr-extract: true
+  protobufjs: true
+  sharp: true
+  unrs-resolver: true
