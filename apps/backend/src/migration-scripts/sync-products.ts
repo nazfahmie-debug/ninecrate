@@ -7,7 +7,11 @@ import {
   createProductOptionsWorkflow,
   createProductsWorkflow,
 } from "@medusajs/medusa/core-flows";
-import type { ProductListing } from "@ninecrate/types";
+// Medusa compiles this script as CommonJS while the shared types package is
+// ESM. The explicit resolution mode keeps this type-only import erasable.
+import type { ProductListing } from "@ninecrate/types" with {
+  "resolution-mode": "import",
+};
 
 // @ninecrate/data-store is ESM-only and can't be require()'d by Medusa's
 // CJS-transpiled `medusa exec` runner, so this reads data/products.json
